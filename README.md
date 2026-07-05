@@ -11,8 +11,8 @@ We picked brilliant and masterpiece because they are words that people do not us
 
 We only wanted to figure out the chance that a review's happy if it has one of our keywords in it. Here is the table of results:
 
-#Keyword	P(Positive)	P(kw|Positive)	P(kw)	P(Positive|kw)
-brilliant	0.50	0.0755	0.0489	0.7711
+Keyword	P(Positive)	P(kw|Positive)	P(kw)	P(Positive|kw) \n
+brilliant	0.50	0.0755	0.0489	0.7711 /n
 excellent	0.50	0.1174	0.0725	0.8099
 masterpiece	0.50	0.0377	0.0264	0.7131
 boring	    0.50	0.0247	0.0623	0.1983
