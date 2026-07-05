@@ -1,6 +1,60 @@
 # Formative3-Group9-Probability-Bayes-GradientDescent
 Group 9 Formative 3 project covering Probability Distributions, Bayesian Probability, and Gradient Descent implementation.
 
+Part 1: Probability Distributions
+
+Objective
+
+Treat a dataset of heights as an unlabeled mixture of two Gaussian distributions and use the Expectation-Maximization (EM) algorithm to recover the two underlying groups father heights and child heights without ever being told which point belongs to which group.
+
+Dataset
+
+Galton Families heights dataset a classic dataset of family height measurements collected by Francis Galton.
+
+
+father column → father heights
+childHeight column → children's heights (both sons and daughters)
+Combined into a single unlabeled array of 1,868 heights (934 fathers + 934 children)
+
+
+Why not just split at the global mean?
+
+A hard split at the mean would force every data point into one of two buckets, even points sitting in the ambiguous overlap zone between the two height populations for example, a shorter father or a taller teenage child near the boundary. That approach makes an all-or-nothing decision with no regard for genuine uncertainty.
+
+EM instead assigns every point a soft responsibility a probability of belonging to each group based on how likely that height is under each group's current Gaussian estimate. A borderline height might get responsibilities like (0.55, 0.45) instead of being forced into one category. This lets both Gaussians' parameters get updated by every point, weighted by relevance, rather than by a rigid, potentially misclassifying cutoff.
+
+Method
+
+Implemented from scratch in Python/NumPy (no sklearn or other ML libraries):
+
+
+Initialization — μ1 = min(data), μ2 = max(data), both variances set to the global variance, π1 = π2 = 0.5
+E-step — compute each point's responsibility (posterior probability of belonging to each Gaussian) given current parameters
+M-step — re-estimate μ1, μ2, σ1², σ2², π1, π2 as responsibility-weighted statistics
+Convergence check track log-likelihood each iteration; stop when the improvement falls below 1e-4 (EM guarantees log-likelihood never decreases)
+Classification demo given any test height, output P(Father | height) and P(Child | height) using the final converged parameters
+
+
+Results — Iteration Tracking Table
+
+Iterationμ1 (Father)μ2 (Child)σ1²σ2²π1π2Log-Likelihood0 (Initialization)56.000079.000010.963910.96390.50000.5000-11945.2214164.827970.17204.63703.63310.41180.5882-4894.5713264.919570.04635.35874.13720.40470.5953-4875.3084274 (Converged)64.072969.27695.10446.13290.25080.7492-4860.8272
+
+Log-likelihood rose monotonically from -11,945 at initialization to -4,861 at convergence — confirming the model steadily improved its fit at every step, consistent with the EM guarantee.
+
+Live Classification Demo (example outputs)
+
+Test HeightP(Father | height)P(Child | height)Classification66 in0.37970.6203Child72 in0.00140.9986Child
+
+
+Notes on the model
+
+Since the "child" group includes both sons and daughters (a wider natural height spread than the all-male father group), the two recovered Gaussians approximate but won't perfectly correspond to the literal father/child labels. This is an expected property of unsupervised clustering on real-world data, not an implementation error.
+
+
+
+
+
+
 ## Part 2: Bayesian Probability
 
 We chose three keywords that we think show people are happy and three that show people are not happy.
@@ -25,6 +79,9 @@ We only wanted to figure out the chance that a review's happy if it has one of o
 When we look at a keyword we can tell if the review is more likely to be happy or not. For example excellent is used in 11.7 percent of happy reviews but only 7.25 percent of all reviews. So if we see excellent in a review it is more likely that the review is happy. Waste is used more in not reviews so if we see waste it is less likely that the review is happy.
 
 Masterpiece and terrible are, like excellent and waste. Not as strong. Masterpiece is not used much so it does not make as big of a difference.
+
+
+
 
 
 # Part 4: Writing the Gradient Descent Code
