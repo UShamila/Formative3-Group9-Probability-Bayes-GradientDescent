@@ -82,6 +82,58 @@ Masterpiece and terrible are, like excellent and waste. Not as strong. Masterpie
 
 
 
+# Part 3: Gradient Descent Manual Calculation
+
+## Objective
+
+This part manually computes gradient descent updates for the parameters **m** (weights) and **b** (bias) of a linear regression model, using full matrix operations rather than treating values as scalars.
+
+Model:
+```
+ŷ = Xm + b
+```
+
+**Fixed inputs used throughout:**
+- X = [[1, 3], [4, 10]]
+- y = [5, 6]
+- Learning rate (α) = 0.01
+- n (number of samples) = 2
+- Initial m = [-1, 2], Initial b = [1, 1]
+
+One gradient descent update was performed per group member, using the output of the previous iteration as the input to the next so the parameters evolve continuously across the four iterations below.
+
+## Method (derived once, reused every iteration)
+
+1. **Predict:** ŷ = Xm + b
+2. **Error:** error = ŷ − y
+3. **Cost function (MSE):** J(m, b) = (1/n)·uᵀu, where u = Xm + b − y
+4. **Gradients** (derived via chain rule):
+   - ∂J/∂m = (2/n).Xᵀ·(ŷ − y)
+   - ∂J/∂b = (2/n)·(ŷ − y)
+5. **Parameter update:**
+   - m_new = m_old − α·(∂J/∂m)
+   - b_new = b_old − α·(∂J/∂b)
+
+## Iteration Results
+
+| Iteration | m (start) | b (start) | ŷ | error (ŷ−y) | m (updated) | b (updated) |
+|---|---|---|---|---|---|---|
+| 1 | [-1, 2] | [1, 1] | [6, 17] | [1, 11] | [-1.45, 0.87] | [0.99, 0.89] |
+| 2 | [-1.45, 0.87] | [0.99, 0.89] | [2.15, 3.79] | [-2.85, -2.21]| [-1.33, 1.18]| [1.01, 0.91] |
+| 3 | [-1.33, 1.18] | [1.01, 0.91] | [3.19, 7.29] | [-1.81, 1.29] | [-1.36, 1.10] | [1.03, 0.90] |
+| 4 | [-1.36, 1.10] | [1.03, 0.90] | [2.97, 6.46] | [-2.03, 0.46] | [-1.36, 1.11] | [1.05, 0.90] |
+
+*(Values rounded to 2 decimal places at each step; small rounding drift compounds slightly across iterations, but the method is consistent throughout.)*
+
+## Observed Trend
+
+- **m** moves from [-1, 2] toward roughly [-1.36, 1.11] the first component stabilizes around -1.3 to -1.4, and the second component drops from 2 down toward ~1.1, converging rather than diverging.
+- **b** moves from [1, 1] toward roughly [1.05, 0.90] both components stay close to their starting values, with only small adjustments each round.
+- The **error magnitude shrinks substantially after the first update** (from [1, 11] down to values consistently under ~3 in each component) and then oscillates in sign rather than steadily shrinking further. This is expected behavior in gradient descent with a fixed learning rate: the parameters are still moving in a direction that reduces error overall compared to the initial guess, but the fixed step size (α = 0.01) causes it to overshoot slightly and correct back and forth near the minimum rather than converging smoothly in a straight line.
+
+## Conclusion
+
+Across all four iterations, the parameters consistently moved away from their poorly fitting initial values and toward a region where predictions are much closer to the true y values, confirming that gradient descent is correctly reducing the cost function. More iterations would be expected to further stabilize m and b closer to the true optimal values.
 
 
 # Part 4: Writing the Gradient Descent Code
