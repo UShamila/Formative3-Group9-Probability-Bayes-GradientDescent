@@ -3,15 +3,13 @@ Group 9 Formative 3 project covering Probability Distributions, Bayesian Probabi
 
 ## Part 2: Bayesian Probability
 
-We picked three keywords we felt signal positive sentiment and three for negative sentiment.
+We chose three keywords that we think show people are happy and three that show people are not happy.
 
-Positive: brilliant, excellent, masterpiece
-Negative: boring, terrible, waste
+The happy words are brilliant, excellent and masterpiece. The not happy words are boring, terrible and waste.
 
-We picked brilliant and masterpiece because they are strong words people don't usually use lightly. Excellent is more common and a bit more generic, so we kept it in to compare against the other two. For the negative side, boring and terrible are both direct complaints about quality, and waste came up a lot in the reviews as part of "waste of time," so we included it as its own keyword.
+We picked brilliant and masterpiece because they are words that people do not use every day. Excellent is a common word so we used it to compare with the other two. For the not words, boring and terrible are direct complaints. Waste was used a lot in the reviews to say something was a waste of time so we included it.
 
-We decided to calculate P(Positive | keyword) only, not P(Negative | keyword).
-
+We only wanted to figure out the chance that a review's happy if it has one of our keywords in it.
 Here is the table of results:
 
 | Keyword     | P(Positive) | P(kw\|Positive) | P(kw)  | P(Positive\|kw) |
@@ -23,8 +21,8 @@ Here is the table of results:
 | terrible    | 0.50        | 0.0154          | 0.0541 | 0.1419          |
 | waste       | 0.50        | 0.0145          | 0.0731 | 0.0993          |
 
-The prior P(Positive) is 0.50 because the dataset has 25,000 positive reviews and 25,000 negative reviews, so before we even look at a keyword, there's an equal chance of either.
+The chance that a review is happy is 0.50 because we have the number of happy reviews and not happy reviews.
 
-Once we bring in a keyword, the posterior moves depending on how much more (or less) often that word shows up in positive reviews compared to the dataset as a whole. For excellent, it shows up in about 11.7% of positive reviews but only 7.25% of all reviews, so seeing it in a review pushes our belief that the review is positive from 50% up to about 81%. Waste shows up a lot more in negative reviews than in the dataset overall, so seeing it drags the probability that the review is positive down to about 10%, meaning it's much more likely negative.
+When we look at a keyword we can tell if the review is more likely to be happy or not. For example excellent is used in 11.7 percent of happy reviews but only 7.25 percent of all reviews. So if we see excellent in a review it is more likely that the review is happy. Waste is used more in not reviews so if we see waste it is less likely that the review is happy.
 
-Masterpiece and terrible follow the same pattern as excellent and waste, just less extreme in masterpiece's case since it appears less often overall.
+Masterpiece and terrible are, like excellent and waste. Not as strong. Masterpiece is not used much so it does not make as big of a difference.
