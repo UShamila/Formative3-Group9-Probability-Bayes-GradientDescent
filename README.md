@@ -28,18 +28,18 @@ Method
 Implemented from scratch in Python/NumPy (no sklearn or other ML libraries):
 
 
-Initialization — μ1 = min(data), μ2 = max(data), both variances set to the global variance, π1 = π2 = 0.5
-E-step — compute each point's responsibility (posterior probability of belonging to each Gaussian) given current parameters
-M-step — re-estimate μ1, μ2, σ1², σ2², π1, π2 as responsibility-weighted statistics
+Initialization μ1 = min(data), μ2 = max(data), both variances set to the global variance, π1 = π2 = 0.5
+E-step compute each point's responsibility (posterior probability of belonging to each Gaussian) given current parameters
+M-step re-estimate μ1, μ2, σ1², σ2², π1, π2 as responsibility-weighted statistics
 Convergence check track log-likelihood each iteration; stop when the improvement falls below 1e-4 (EM guarantees log-likelihood never decreases)
 Classification demo given any test height, output P(Father | height) and P(Child | height) using the final converged parameters
 
 
-Results — Iteration Tracking Table
+Results Iteration Tracking Table
 
 Iterationμ1 (Father)μ2 (Child)σ1²σ2²π1π2Log-Likelihood0 (Initialization)56.000079.000010.963910.96390.50000.5000-11945.2214164.827970.17204.63703.63310.41180.5882-4894.5713264.919570.04635.35874.13720.40470.5953-4875.3084274 (Converged)64.072969.27695.10446.13290.25080.7492-4860.8272
 
-Log-likelihood rose monotonically from -11,945 at initialization to -4,861 at convergence — confirming the model steadily improved its fit at every step, consistent with the EM guarantee.
+Log-likelihood rose monotonically from -11,945 at initialization to -4,861 at convergence  confirming the model steadily improved its fit at every step, consistent with the EM guarantee.
 
 Live Classification Demo (example outputs)
 
