@@ -39,7 +39,7 @@ Instead of hiding the math behind a black-box library like Scikit-Learn, we wrot
 
 ## Key Features of Our Code
 
-### 1. No Hidden Steps (Unabstracted Code)
+### 1. No Hidden Steps
 We intentionally avoided using advanced wrappers or hidden classes. 
 * Every matrix multiplication (`np.dot`) and matrix transpose (`X.T`) happens right out in the open inside our training loop.
 * Every time the loop runs, the terminal prints out the exact values for the predicted outputs ($\hat{y}$), the error vector, the gradients, and the updated parameters. This makes it incredibly easy to compare the code's output line-by-line with our hand-written work.
