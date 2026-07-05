@@ -123,7 +123,7 @@ One gradient descent update was performed per group member, using the output of 
 | 3 | [-1.33, 1.18] | [1.01, 0.91] | [3.19, 7.29] | [-1.81, 1.29] | [-1.36, 1.10] | [1.03, 0.90] |
 | 4 | [-1.36, 1.10] | [1.03, 0.90] | [2.97, 6.46] | [-2.03, 0.46] | [-1.36, 1.11] | [1.05, 0.90] |
 
-*(Values rounded to 2 decimal places at each step; small rounding drift compounds slightly across iterations, but the method is consistent throughout.)*
+
 
 ## Observed Trend
 
